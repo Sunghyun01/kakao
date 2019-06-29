@@ -1,4 +1,5 @@
 <?php
+  header("Content-Type: text/html; charset=UTF-8");
     $data = json_decode(file_get_contents('php://input'), true);
     $content = $data["content"];
     $user = $data["user_key"];
@@ -7,10 +8,24 @@
     include("scadule.php");    // 학사일정
     include("game.php");       // 게임
     include("Manager.php");    // 개발자 관리
-    include("LOL.php");       //https://github.com/Jungmin-L/Moowon-kakaobot/blob/master/message.php
     switch($content){
-        case "일정":
-              sixMonth_week5();
+        case "기말고사 일정":
+              scadule();
+              break;
+        case "1학년":
+              grade_one();
+              break;
+
+        case "2학년":
+              grade_two();
+              break;
+        case "3학년(이과)":
+              grade_three_A();
+              break;
+        case "3학년(문과)":
+              grade_three_B();
+              break;
+
         case "급식":
             echo '
                 {
@@ -37,7 +52,7 @@
                   "keyboard":
                   {
                       "type": "buttons",
-                      "buttons": ["급식", "날씨","일정","패치노트","개발자모드"]
+                      "buttons": ["급식", "날씨","기말고사 일정","개발자모드"]
                   }
                 }
             ';
@@ -53,7 +68,7 @@
                       "keyboard":
                       {
                           "type": "buttons",
-                          "buttons": ["급식", "날씨","일정","패치노트","개발자모드"]
+                          "buttons": ["급식", "날씨","기말고사 일정","개발자모드"]
                       }
                   }
               ';
@@ -84,7 +99,7 @@
                       "keyboard":
                       {
                           "type": "buttons",
-                          "buttons":["급식", "날씨","일정","패치노트","개발자모드"]
+                          "buttons":["급식", "날씨","기말고사 일정","개발자모드"]
                       }
                   }
               ';
@@ -100,7 +115,7 @@
                       "keyboard":
                       {
                           "type": "buttons",
-                          "buttons": ["급식", "날씨","일정","패치노트","개발자모드"]
+                          "buttons": ["급식", "날씨","기말고사 일정","개발자모드"]
                       }
                   }
               ';
@@ -115,7 +130,7 @@
                       "keyboard":
                       {
                           "type": "buttons",
-                          "buttons": ["급식", "날씨","일정","패치노트","개발자모드"]
+                          "buttons": ["급식", "날씨","기말고사 일정","개발자모드"]
                       }
                   }
               ';
@@ -130,7 +145,7 @@
                       "keyboard":
                       {
                           "type": "buttons",
-                          "buttons": ["급식", "날씨","일정","패치노트","개발자모드"]
+                          "buttons": ["급식", "날씨","기말고사 일정","개발자모드"]
                       }
                   }
               ';

@@ -2,8 +2,9 @@
 include("lunch.php");
 header('Content-type: application/json');
 
+$code = 'B100000403';
 if($_GET['day'] == "T"){
-    $lunch = get_lunch_today($_GET['code']);
+    $lunch = get_lunch_today(code);
     $exp = split('\n', $lunch);
     $arr = array();
     $arr2 = array();
@@ -17,7 +18,7 @@ if($_GET['day'] == "T"){
 
     print_r($res);
 }else{
-    $lunch = get_lunch_tomorrow($_GET['code']);
+    $lunch = get_lunch_tomorrow(code);
     $exp = split('\n', $lunch);
     $arr = array();
     $arr2 = array();

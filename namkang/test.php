@@ -1,16 +1,19 @@
-<?
+<?php
+header("Content-Type:text/html;charset=utf-8");
+header('Content-type: application/json; charset=utf-8');
+
 include("lunch.php");
 include('weather.php');
 
-header('Content-type: application/json');
 
 $code = 'B100000403';
 $weatherCode = '1162010200';
+
 if($_GET['code'] == "TL"){
-    $lunch = get_lunch_today(code);
+    $lunch = get_lunch_today($code);
     changeType($lunch);
 }elseif($_GET['code'] == "YL"){
-    $lunch = get_lunch_tomorrow(code);
+    $lunch = get_lunch_tomorrow($code);
     changeType($lunch);
 }elseif($_GET['code'] == "TW"){
    $weather = get_weather_today($weatherCode);
@@ -30,7 +33,6 @@ function changeType($changeJson){
     $str = str_replace("\\", "\n", $imp);
     $arr2['simpleText']['text'] = "[중식]".$str;
     $arr['template']['outputs'] = array($arr2);
-
     $res =  json_encode($arr);
 
     print_r($res);
@@ -42,7 +44,7 @@ function simpleTextFunc($weather){
     $arr['version'] = "2.0";
     $imp = implode('', $exp);
     $str = str_replace("\\", "\n", $imp);
-    $arr2['simpleText']['text'] = $weather;
+    $arr2['simpleText']['text'] = "오늘날씨".$weather;
     $arr['template']['outputs'] = array($arr2);
     $res =  json_encode($arr);
 
